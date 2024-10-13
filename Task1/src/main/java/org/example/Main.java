@@ -1,0 +1,28 @@
+package org.example;
+
+import java.io.*;
+import java.util.logging.Logger;
+
+public class Main {
+
+    private static Logger log = Logger.getLogger(DetailsWriter.class.getName());
+
+    public static void main(String[] args) throws IOException {
+
+        String input = getStringFromFile("src/main/resources/numbersList.txt");
+        DetailsWriter detailsWriter = new DetailsWriter();
+        try {
+            detailsWriter.presentOutput(input);
+        } catch (NullPointerException e) {
+            log.warning("This file is empty. Please provide data to a file numbersList.txt");
+        }
+    }
+
+    private static String getStringFromFile(String path) throws IOException {
+        File file = new File(path);
+        BufferedReader reader = new BufferedReader(new FileReader(file));
+        String numbers = reader.readLine();
+        reader.close();
+        return numbers;
+    }
+}
