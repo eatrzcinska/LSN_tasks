@@ -20,9 +20,9 @@ public class Graph {
 
     public boolean checkIfGrafContainsVerticies(VerticesConnection connection) {
         HashSet<String> connectionVer = connection.getVertices();
-        HashSet<String> graphVer = new HashSet<>(this.vertices);
+        HashSet<String> graphVer = this.vertices;
         for (String s : connectionVer) {
-            if (!graphVer.add(s)) {
+            if (graphVer.contains(s)) {
                 return true;
             }
         }
